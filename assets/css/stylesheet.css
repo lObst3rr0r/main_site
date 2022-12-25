@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Chivo+Mono:wght@300&family=Dancing+Script:wght@500&display=swap');
+body {
+    margin:0px;
+    background-color: rgb(32, 34, 55);
+}
+
+#breaker-animated {
+    color:white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(17, 17, 17);
+}
+.nav {
+    border:1px solid rgb(34, 37, 71);
+    border-radius: 6px;
+
+}
+ul {
+    text-align: center;
+    list-style-type: none;
+    text-transform: uppercase;
+
+}
+
+ul li{
+    display: inline-block;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+li a {
+    font-family: 'Acme', sans-serif;
+    text-decoration: none;
+    color:rgb(228, 232, 255);
+    transition: color 0.2s ease-out 50ms;
+    
+}
+li a:hover {
+    color:rgb(47, 47, 220);
+}
+
+.banner {
+    background: rgb(14,55,158);
+    background: linear-gradient(0deg, rgba(14,55,158,1) 0%, rgba(5,5,5,1) 100%);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.banner h1 {
+    color:white;
+    text-align: center;
+    text-transform: capitalize;
+    font-family: 'Dancing Script', cursive;
+    font-size:35px;
+}
