@@ -9,6 +9,9 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
+    width:auto;
+    position:relative;
+    height:50px;
     overflow: hidden;
     background-color: rgb(17, 17, 17);
 }
@@ -54,4 +57,68 @@ li a:hover {
     text-transform: capitalize;
     font-family: 'Dancing Script', cursive;
     font-size:35px;
+}
+
+.hr-nav {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.hr-nav {
+    border:1px solid ;
+    border-image:linear-gradient(21deg,rgb(19, 92, 250),rgb(0, 44, 80))1;
+}
+
+.active a {
+    text-decoration-line:underline;
+    text-decoration-color: rgb(23, 23, 240);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 3px;
+}
+
+
+h1 {
+    text-align: center;
+    color:white;
+}
+p{
+    text-align: center;
+    color:white;
+}
+
+.hr-nav1 {
+    border:1px solid ;
+    border-image:linear-gradient(21deg,rgb(19, 92, 250),rgb(0, 44, 80))1;
+}
+.hr-nav2 {
+    border:1px solid ;
+    border-image:linear-gradient(21deg,rgb(0, 44, 80),rgb(19,92,250))1;
+}
+
+
+.activity {
+    background-color: rgb(37, 37, 65);
+    border-radius:12px;
+    height:125px;
+}
+
+.date {
+    font-weight: 300;
+}
+
+footer {
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background-color: black;
+}
+
+.container {
+    margin:5px;
+}
+
+.animated {
+    align-items: center;
+    position:absolute;
+    /*margin-left:-30px;*/
 }
