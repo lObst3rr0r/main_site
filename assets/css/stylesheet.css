@@ -100,7 +100,7 @@ p{
     background-color: rgb(37, 37, 65);
     border-radius:12px;
     height:125px;
-    width:525px;
+    width:auto;
     text-align: center;
     margin-left:auto;
     margin-right:auto;
@@ -129,4 +129,10 @@ footer {
 
 .wrap {
     position:relative;
+}
+
+.projects a {
+    color:rgb(109, 156, 255);
+    text-decoration: none;
+    font-size:21px;
 }
