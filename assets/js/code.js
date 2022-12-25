@@ -3,11 +3,11 @@ var id = null;
 
 function left() {
     var elem = document.getElementById("animated");
-    var pos = -30;
+    var pos = -40;
     clearInterval(id);
     id = setInterval(frame,10);
     function frame() {
-        if (pos == 1000){
+        if (pos == 2000){
             clearInterval(id);
             left();
         }
