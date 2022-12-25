@@ -25,6 +25,6 @@ for (i=1;i<9999;i++){
 }
 
 
-// imagine spending christmas debugging js 
+// Fuck you
 
 
