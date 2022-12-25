@@ -17,7 +17,8 @@ body {
 }
 .nav {
     border:1px solid rgb(34, 37, 71);
-    border-radius: 6px;
+    border-top:1px solid rgb(255, 255, 255);
+    border-width:3px;
 
 }
 ul {
@@ -49,6 +50,8 @@ li a:hover {
     background: linear-gradient(0deg, rgba(14,55,158,1) 0%, rgba(5,5,5,1) 100%);
     margin: 0;
     padding: 0;
+    border-bottom:1px solid rgb(255, 255, 255);
+    border-width: 3px;
     overflow: hidden;
 }
 .banner h1 {
@@ -135,4 +138,11 @@ footer {
     color:rgb(109, 156, 255);
     text-decoration: none;
     font-size:21px;
+    transition: color 0.2s ease-out 50ms;
+
 }
+
+.projects a:hover{
+    color:rgb(82, 82, 255);
+}
+
