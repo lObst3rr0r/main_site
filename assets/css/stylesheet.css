@@ -102,7 +102,7 @@ p{
 .activity {
     background-color: rgb(37, 37, 65);
     border-radius:12px;
-    height:125px;
+    height:165px;
     width:auto;
     text-align: center;
     margin-left:auto;
@@ -113,12 +113,7 @@ p{
     font-weight: 300;
 }
 
-footer {    
-    background-color: black;
-    position:absolute;
-    bottom:0px;
-    width:100%;
-}
+
 
 .container {
     margin:5px;
@@ -146,3 +141,30 @@ footer {
     color:rgb(82, 82, 255);
 }
 
+
+p button {
+    background-image:url("assets/img/htb.png");
+    width:60%;
+    height:350px;
+    border-color:blue;
+    border-radius: 4px;
+}
+
+.separator {
+    margin: 0 auto;
+    width: 20%;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+.cody {
+    background-color: rgb(52, 52, 52);
+    font-style: italic;
+}
+
+img {
+    max-width: 80%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}

