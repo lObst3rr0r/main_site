@@ -1,14 +1,6 @@
 var id = null;
 
-function htb() {
-    var elem1 = document.getElementById("collapse-htb");
-    if (elem1.style.display === "none"){
-        elem1.style.display = "initial";
-    }
-    else {
-        elem1.style.display = "none";
-    }
-}
+
 function left() {
     var elem = document.getElementById("animated");
     var pos = -40;
