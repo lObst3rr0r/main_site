@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Home | Kent</title>
+        <title>Precious | Kent</title>
         <link rel="icon" href="../../assets/img/favicon.png">
         <link rel="stylesheet" type="text/css" href="../../assets/css/stylesheet.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +41,9 @@
         <p style="font-size:21px;">It's now time to acquire root, so let's get started<br> First we're gonna see if henry is allowed to run any commands under root.<br> We check that by typing <span class="cody">sudo -l</span>.<br><br><img src="img/precious/sudo.PNG"><br><br> Looks like there is a script written in ruby that can be ran as root. Let's investigate further!<br>We can see that this program updates some dependencies located in the dependencies.yml file. <br> It uses YAML. So after doing some research, I found that YAML is vulnerable to deserialisation attacks so let's try one.<br>Let's navigate to <span class="cody">/dev/shm</span> and create a new file called dependencies.yml.<br> In this file you will want to paste this deserialization payload found on <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Insecure%20Deserialization/Ruby.md">github</a>: <br>
         <img src="img/precious/exp.PNG"><br>Then you will want to edit the <span class="cody">git_set : id</span> to <span class="cody">git_set : chmod u+s /bin/bash</span><br> That way, when running the program as root, it will elevate our bin/bash privilage to root (i think).<br><BR><img src="img/precious/exploit.PNG"><br>Save the file and run the command once again ( <span class="cody">sudo /usr/bin/ruby /opt/update_dependencies.rb</span> )<br> after running type <span class="cody">bash -p</span><br><br> Now if you type <span class="cody">whoami</span> you will see that we are root.<br><BR><img src="img/precious/rooted.PNG"><br> You can now read the flag and finish this machine.<br><br>Hope you learned something and I wish you a great day/night.<br> click <a style="text-decoration:none;color:rgb(163, 163, 255);font-size:21px;font-weight:bold;" href="../../index.html">here</a> to return home.</p>
         </div>
-
+        <footer >
+            <p style="text-align:center;"><img src="../../assets/img/char.png" class="frog"></p>
+        </footer>
     </body>
     <script src="../../assets/js/code.js">
     </script>
