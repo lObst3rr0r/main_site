@@ -206,7 +206,7 @@ main{
 }
 
 .writeups-title{
-    width:10%;
+    width:15%;
     background-color: rgb(41, 51, 41);
     user-select: none;
     transition: color 0.1s ease-out 50ms;
