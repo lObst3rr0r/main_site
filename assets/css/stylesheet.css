@@ -161,7 +161,7 @@ img {
     text-align: center;
     margin-left:auto;
     margin-right:auto;
-    height:160px;
+    height:auto;
     border-radius: 7px;
 }
 
@@ -193,4 +193,33 @@ main{
 
 #eyes, #eyes img {
     position:absolute;
+}
+
+.box-wrap {
+    border:1px solid rgb(36, 44, 36);
+    width:53%;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius:6px;
+    background-color: rgb(41, 51, 41);
+}
+
+.writeups-title{
+    width:10%;
+    background-color: rgb(41, 51, 41);
+    user-select: none;
+    transition: color 0.1s ease-out 50ms;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;    
+}
+.writeups-title button {
+    background-color: transparent;
+    border:none;
+    
+}
+
+.writeups-title:hover{
+    cursor:pointer;
+    color:rgb(88, 148, 75);
 }
